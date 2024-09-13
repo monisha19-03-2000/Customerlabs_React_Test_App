@@ -1,38 +1,175 @@
-.App {
-  text-align: center;
+/* General popup container */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* Popup as Side Drawer */
+.popup {
+  background-color: white;
+  padding: 0; /* Remove padding to avoid conflict with header */
+  border-radius: 2px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  right: -5px; /* Initially hidden off-screen */
+  transition: right 0.3s ease; /* Smooth slide-in effect */
+  z-index: 1000; /* Ensures it is on top */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* Show drawer (when active) */
+.popup.show {
+  right: 0; /* When active, slide in from the right */
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Schema Box */
+.schema-box {
+  border: 2px solid #005b96; /* Blue color for schema box */
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+/* Close button */
+.popup-header .close-button {
+  background: none;
+  border: none;
+  color: whitesmoke;
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  left: 10px; /* Distance from the left */
+  top: 50%;
+  transform: translateY(-50%); /* Vertically center */
+  
+}
+
+/* Header styling for popup */
+.popup-header {
+  width: 100%;
+  height: 8vh; /* 8% of the view height */
+  background-color: lightseagreen;
+  color: whitesmoke;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  align-items: center; /* Vertically center the content */
+  padding: 10px 20px; /* Add padding to the sides */
+  box-sizing: border-box; /* Ensure padding doesn't affect height */
+  position: relative; /* Needed for absolute positioning of the close button */
+}
+
+.popup-header .close-button {
+  background: none;
+  border: none;
+  color: whitesmoke;
+  font-size: 24px;
+  cursor: pointer;
+  position: absolute;
+  left: 10px; /* Distance from the left */
+  top: 50%; /* Vertical center */
+  transform: translateY(-50%); /* Vertically center */
+}
+
+.popup-header .title {
+  margin-left: 40px; /* Space between button and title, adjust as needed */
+  font-size: 18px; /* Ensure font size matches */
+}
+
+
+
+/* Content area inside popup */
+.popup-content {
+  padding: 20px; /* Padding for the rest of the content */
+  overflow-y: auto; /* Scroll if the content exceeds the height */
+}
+
+/* Input box styling */
+.popup input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Dropdown styling */
+.popup select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+/* Buttons */
+.popup button {
+  padding: 10px 20px;
+  background-color: #28a745;
   color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
-.App-link {
-  color: #61dafb;
+.popup button:hover {
+  background-color: #218838;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.popup button:last-child {
+  background-color: #007bff;
+}
+
+.popup button:last-child:hover {
+  background-color: #0069d9;
+}
+
+/* Main save button */
+.save-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.save-button:hover {
+  background-color: #0056b3;
+}
+
+/* Transparent Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay */
+  z-index: 999; /* Below the drawer but above the main content */
+}
+
+/* Show overlay when drawer is open */
+.overlay.show {
+  display: block;
+}
+
+
+.custom-button {
+  display: block;
+  margin: 20px auto; /* Center the button horizontally */
+  padding: 10px 20px;
+  border: 2px solid white; /* White border */
+  background-color: lightgrey;
+  color: black; /* Text color */
+  text-align: start; /* Center the text */
+  border-radius: 5px; /* Optional: Add some rounding to the edges */
+  cursor: pointer;
+  font-size: 16px; /* Adjust font size as needed */
+}
+
+.custom-button:hover {
+  background-color: white;
+  color: black;
 }
